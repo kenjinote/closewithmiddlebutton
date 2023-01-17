@@ -10,4 +10,5 @@ Windows起動時に自動起動させるにはスタートアップフォルダ`
 
 ## ダウンロード
 最新版は下記からダウンロードできます。
+
 [closewithmiddlebutton.exe](http://github.com/kenjinote/closewithmiddlebutton/releases/latest/download/closewithmiddlebutton.exe)
