@@ -33,8 +33,12 @@ LRESULT CALLBACK LowLevelMouseProc(
 	return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK WndProc(
+	_In_ HWND hWnd,
+	_In_ UINT msg,
+	_In_ WPARAM wParam,
+	_In_ LPARAM lParam
+) {
 	static HHOOK hook;
 	switch (msg)
 	{
