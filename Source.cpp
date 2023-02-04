@@ -14,7 +14,9 @@ LRESULT CALLBACK LowLevelMouseProc(
 		GetCursorPos(&point);
 		HWND hWnd = WindowFromPoint(point);
 		if (hWnd && HTCAPTION == SendMessage(hWnd, WM_NCHITTEST, 0, MAKELPARAM(point.x, point.y))) {
-			hWnd = GetAncestor(hWnd, GA_ROOT);
+			if(!(GetWindowLongW(hWnd, GWL_EXSTYLE) & WS_EX_MDICHILD)) {
+				hWnd = GetAncestor(hWnd, GA_ROOT);
+			}
 			PostMessage(hWnd, WM_CLOSE, 0, 0);
 		}
 	}
