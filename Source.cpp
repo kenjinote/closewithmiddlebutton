@@ -61,7 +61,11 @@ int WINAPI wWinMain(
 	_In_ LPWSTR lpCmdLine,
 	_In_ int nShowCmd
 ) {
-	MSG msg;
+	HWND hWnd = FindWindow(szClassName, 0);
+	if (hWnd) {
+		return 0;
+	}
+	MSG msg = {};
 	WNDCLASS wndclass = {
 		0,
 		WndProc,
@@ -75,7 +79,7 @@ int WINAPI wWinMain(
 		szClassName
 	};
 	RegisterClass(&wndclass);
-	HWND hWnd = CreateWindow(
+	hWnd = CreateWindow(
 		szClassName,
 		0,
 		WS_OVERLAPPEDWINDOW,
