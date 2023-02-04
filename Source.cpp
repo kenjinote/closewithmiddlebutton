@@ -13,7 +13,17 @@ LRESULT CALLBACK LowLevelMouseProc(
 		POINT point = {};
 		GetCursorPos(&point);
 		HWND hWnd = WindowFromPoint(point);
-		if (hWnd && HTCAPTION == SendMessage(hWnd, WM_NCHITTEST, 0, MAKELPARAM(point.x, point.y))) {
+		DWORD dwHitTest = (DWORD)SendMessage(hWnd, WM_NCHITTEST, 0, MAKELPARAM(point.x, point.y));
+		if (hWnd &&
+			(
+				HTCAPTION == dwHitTest ||
+				HTSYSMENU == dwHitTest ||
+				HTMINBUTTON == dwHitTest ||
+				HTMAXBUTTON == dwHitTest ||
+				HTCLOSE == dwHitTest ||
+				HTHELP == dwHitTest
+			))
+		{
 			if(!(GetWindowLongW(hWnd, GWL_EXSTYLE) & WS_EX_MDICHILD)) {
 				hWnd = GetAncestor(hWnd, GA_ROOT);
 			}
